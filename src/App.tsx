@@ -14,7 +14,6 @@ const ImageGallery: React.FC = () => {
   const [filteredImages, setFilteredImages] = useState<Image[]>([]);
   const [filter, setFilter] = useState<string | null>(null);
   const [page, setPage] = useState<number>(1);
-  const [isEnd, setIsEnd] = useState<boolean>(false);
   const loader = useRef<HTMLDivElement | null>(null);
 
   // Generate mock data
@@ -99,11 +98,9 @@ const ImageGallery: React.FC = () => {
       </div>
 
       {/* Infinite Scroll Trigger [cite: 4] */}
-      {!isEnd && (
-        <div ref={loader} className="h-20 flex items-center justify-center">
-          <p className="text-gray-500">Loading more...</p>
-        </div>
-      )}
+      <div ref={loader} className={`h-20 flex items-center justify-center page-${page}`}>
+        <p className="text-gray-500">Loading more...</p>
+      </div>
     </div>
   );
 };
